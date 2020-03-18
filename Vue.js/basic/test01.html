@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+</head>
+<body>
+    <!--View-->
+    <div id="app">
+        {{str}}
+    </div>
+    <!--VueJS CDN-->
+    <script src="https://unpkg.com/vue"></script>
+    <!--View Model Creation-->
+    <script>
+        var app = new Vue({
+            el:"#app",//제어 대상
+            data:{//사용할 Model(Data)
+                str:"Hello VueJS",//View Model
+            },
+        });
+    </script>
+</body>
+</html>
