@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+</head>
+<body>
+    <!--View-->
+    <div id="app">
+        <form action="http://www.sysout.co.kr">
+            이메일 : <input type="text" name="email" v-model="email">{{email}}<br><br>
+            비밀번호 : <input type="password" name="password" v-model="password"><br><br>
+            비밀번호 확인 : <input type="password" name="passwordCheck" v-model="passwordCheck"><br><br>
+            약관 동의 : <input type="checkbox" v-model="agree"><br><br>
+            <input type="submit" value="가입하기" v-bind:diabled="!isFormValid">
+
+        </form>
+    </div>
+    <!--VueJS CDN-->
+    <script src="https://unpkg.com/vue"></script>
+    <!--View Model Creation-->
+    <script>
+        var app = new Vue({
+            el:"#app",//제어 대상
+            data:{//사용할 Model(Data)
+              email:"",
+              password:"",
+              passwordCheck:"",
+              agree:false,
+            },
+            computed : {
+                isEmailValid : function(){
+                    return this.email.length>=8 && this.email.length<=20;
+                },
+                isPasswordValid : function(){
+                    return this.password.length>=6&&this.password.length<=15;
+                },
+                isPasswordCheckValid : function(){
+                    return this.passwordCheck.length>0
+                                && this.password === this.passwordCheck;
+                },
+                isFormValid : function(){
+                    return this.isEmailValid 
+                            && this.isPasswordValid
+                            && this.isPasswordCheckValid
+                            && this.agree;
+                },
+            },
+        });
+    </script>
+</body>
+</html>
